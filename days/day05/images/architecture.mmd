@@ -1,0 +1,12 @@
+flowchart TD
+    N0["用户查询"]
+    N1["BM25 + Vector"]
+    N0 --> N1
+    N2["候选去重"]
+    N1 --> N2
+    N3["RRF 融合"]
+    N2 --> N3
+    N4["Reranker"]
+    N3 --> N4
+    N5["引用与回答"]
+    N4 --> N5

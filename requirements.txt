@@ -1,0 +1,14 @@
+openai
+python-dotenv
+pydantic>=2
+fastapi
+uvicorn[standard]
+httpx
+langgraph
+qdrant-client
+sentence-transformers
+rank-bm25
+redis
+psycopg[binary]
+pytest
+pytest-asyncio

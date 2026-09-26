@@ -1,0 +1,12 @@
+flowchart TD
+    N0["HTTP 请求"]
+    N1["FastAPI"]
+    N0 --> N1
+    N2["Agent State"]
+    N1 --> N2
+    N3["模型与工具"]
+    N2 --> N3
+    N4["SSE 事件"]
+    N3 --> N4
+    N5["客户端"]
+    N4 --> N5

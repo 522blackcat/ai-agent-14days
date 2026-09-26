@@ -1,0 +1,14 @@
+flowchart TD
+    N0["请求"]
+    N1["State"]
+    N0 --> N1
+    N2["Router"]
+    N1 --> N2
+    N3["工具节点"]
+    N2 --> N3
+    N4["Checkpoint"]
+    N3 --> N4
+    N5["人工审批"]
+    N4 --> N5
+    N6["最终响应"]
+    N5 --> N6

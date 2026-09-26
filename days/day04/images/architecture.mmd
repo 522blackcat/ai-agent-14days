@@ -1,0 +1,12 @@
+flowchart TD
+    N0["原始文档"]
+    N1["解析与清洗"]
+    N0 --> N1
+    N2["Chunking"]
+    N1 --> N2
+    N3["Embedding"]
+    N2 --> N3
+    N4["Qdrant"]
+    N3 --> N4
+    N5["检索结果"]
+    N4 --> N5
