@@ -8,16 +8,16 @@
 ## 学习进度
 
 <!-- PROGRESS_START -->
-**完成天数：0/14**  
-**完成率：0.0%**  
-**完成任务：0/0**
+**完成天数：1/14**  
+**完成率：7.1%**  
+**完成任务：10/140**
 <!-- PROGRESS_END -->
 
 ## 14 天课程
 
 | 天数 | 课程 | 进度 |
 |---|---|---|
-| 01 | [LLM 原理、Function Calling 与最小 Agent](days/day01/day01.md) | ⬜ 未开始 |
+| 01 | [LLM 原理、Function Calling 与最小 Agent](days/day01/day01.md) | ✅ 已完成 |
 | 02 | [ReAct、工具系统与执行边界](days/day02/day02.md) | ⬜ 未开始 |
 | 03 | [LangGraph、状态机与 asyncio](days/day03/day03.md) | ⬜ 未开始 |
 | 04 | [RAG、Embedding、Chunking 与 Qdrant](days/day04/day04.md) | ⬜ 未开始 |
