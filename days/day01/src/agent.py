@@ -18,9 +18,10 @@ Ollama：
 
 import json
 import os
+import httpx
 
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import OpenAI, APIStatusError
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 
@@ -76,6 +77,10 @@ def create_client():
             ),
             timeout=30.0,
             max_retries=1,
+            http_client=httpx.Client(
+                trust_env=False,
+                timeout=30.0,
+            ),
         )
         model = os.getenv("OLLAMA_MODEL", "qwen3:8b")
         return client, model
@@ -92,6 +97,10 @@ def create_client():
         api_key=api_key,
         timeout=30.0,
         max_retries=1,
+        http_client=httpx.Client(
+            trust_env=False,
+            timeout=30.0,
+        ),
     )
     return client, model
 
@@ -140,6 +149,9 @@ def run_agent(question: str, max_rounds: int = 4) -> str:
     """限制模型与工具的最大交互轮次。"""
 
     client, model = create_client()
+    print("实际模型：", model)
+    print("实际接口：", client.base_url)
+    print("当前工作目录：", os.getcwd())
 
     messages = [
         {
@@ -170,6 +182,8 @@ def run_agent(question: str, max_rounds: int = 4) -> str:
             message.model_dump(exclude_none=True)
         )
 
+        print(f"第{_}次模型运行： {message}")
+
         if not message.tool_calls:
             return message.content or "模型没有返回文本。"
 
@@ -195,4 +209,11 @@ def run_agent(question: str, max_rounds: int = 4) -> str:
 
 
 if __name__ == "__main__":
-    print(run_agent("请计算 123.5 加 876.5 等于多少？"))
+
+    try:
+        print(run_agent("请计算 123.5 加 876.5 等于多少？", max_rounds=3))
+    except APIStatusError as exc:
+        print("HTTP 状态码：", exc.status_code)
+        print("请求 ID：", exc.request_id)
+        print("服务端响应：", exc.response.text)
+        raise

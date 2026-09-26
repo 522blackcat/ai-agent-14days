@@ -56,3 +56,12 @@ def test_reject_invalid_json():
     )
 
     assert result["error"] == "invalid_arguments"
+
+
+def test_big_params_add_numbers():
+    result = agent.execute_tool(
+        "add_numbers",
+        '{"a": 12222222222222222, "b": 302222222222222222}',
+    )
+
+    assert result["error"] == "invalid_arguments"
